@@ -13,7 +13,7 @@ ARG ES_HOST=elasticsearch
 ARG ES_PORT=9200
 ARG MOLOCH_PASSWORD=PASSWORDCHANGEME
 ARG MOLOCH_INTERFACE=ens224
-ARG CAPTURE=off
+ARG CAPTURE=on
 ARG VIEWER=on
 #Initalize is used to reset the environment from scratch and rebuild a new ES Stack
 ARG INITALIZEDB=false
