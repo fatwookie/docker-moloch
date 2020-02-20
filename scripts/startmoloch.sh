@@ -9,11 +9,13 @@ do
 done
 echo
 #Configure Moloch to Run
-if [ ! -f /data/configured ]; then
-	touch /data/configured
-	/data/moloch/bin/Configure
-fi
+# We don't trust this. We build our own config.ini and use Ansible templating.
+#if [ ! -f /data/configured ]; then
+#	touch /data/configured
+#	/data/moloch/bin/Configure
+#fi
 #Give option to init ElasticSearch
+
 if [ "$INITALIZEDB" = "true" ] ; then
 	echo INIT | /data/moloch/db/db.pl http://$ES_HOST:$ES_PORT init
 	/data/moloch/bin/moloch_add_user.sh admin "Admin User" $MOLOCH_PASSWORD --admin

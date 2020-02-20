@@ -49,7 +49,7 @@ ENV PATH="/data:/data/moloch/bin:${PATH}"
 EXPOSE 8005
 WORKDIR /data/moloch
 
-ENTRYPOINT ["/data/startmoloch.sh"]
+# ENTRYPOINT ["/data/startmoloch.sh"]
   
 
 
