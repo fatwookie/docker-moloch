@@ -21,6 +21,8 @@ ARG INITALIZEDB=false
 ARG WIPEDB=false
 
 # Declare envs vars for each arg
+# We need this because /data/moloch/bin/Configure is executed on installation of the .deb
+#
 ENV ES_HOST $ES_HOST
 ENV ES_PORT $ES_PORT
 ENV MOLOCH_LOCALELASTICSEARCH no
@@ -37,12 +39,15 @@ RUN mkdir -p /data
 RUN cd /data && curl -C - -O "https://files.molo.ch/builds/ubuntu-"$UBUNTU_VERSION"/moloch_"$MOLOCH_VERSION".deb"
 RUN cd /data && dpkg -i "moloch_"$MOLOCH_VERSION".deb"
 
-# add scripts
+# Add the startup scripts to the /data directory
 ADD /scripts /data/
-ADD /etc /data/moloch/etc/
 RUN chmod 755 /data/startmoloch.sh
 RUN chmod 755 /data/wipemoloch.sh
 RUN chmod 755 /data/moloch-parse-pcap-folder.sh
+
+# Put our configuration in the right place. This overwrites any things done by Configure
+ADD /etc /data/moloch/etc/
+
 #Update Path
 ENV PATH="/data:/data/moloch/bin:${PATH}"
 
