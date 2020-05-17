@@ -7,7 +7,8 @@ apt-get install -yq  wget curl libpcre3-dev uuid-dev libmagic-dev pkg-config g++
 rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 # Declare args
 # Current: https://files.molo.ch/builds/ubuntu-18.04/moloch_2.2.2-1_amd64.deb
-ARG MOLOCH_VERSION=2.2.2-1_amd64
+# Even more current: https://files.molo.ch/builds/ubuntu-18.04/moloch_2.3.0-1_amd64.deb
+ARG MOLOCH_VERSION=2.3.0-1_amd64.deb
 ARG UBUNTU_VERSION=18.04
 ARG ES_HOST=elasticsearch
 ARG ES_PORT=9200
@@ -55,6 +56,3 @@ EXPOSE 8005
 WORKDIR /data/moloch
 
 ENTRYPOINT ["/data/startmoloch.sh"]
-  
-
-
